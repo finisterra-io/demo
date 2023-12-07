@@ -128,7 +128,6 @@ jobs:
           fi
 
           for DIR in $FOLDERS; do
-              git checkout main
               FOLDER_NAME=$(basename "$DIR")
 
               if [[ "$FOLDER_NAME" != "${AWS_MODULE}" ]]; then
@@ -254,11 +253,9 @@ jobs:
           ')
 
           ALL_STACKS=$(find ${{ env.ROOT_DIR }} -maxdepth 1 -mindepth 1 -type d -name "stack_*" -exec basename {} \;)
-          echo "ALL_STACKS=$ALL_STACKS"
 
           # Extract stack names from STACKS_LIST
           STACK_NAMES=$(echo $STACKS_LIST | jq -r '.[].stack_name')
-          echo "STACK_NAMES=$STACK_NAMES"
 
           # Initialize an array to hold missing stacks
           missing_stacks=()
@@ -272,7 +269,6 @@ jobs:
 
           # Convert the missing stacks array to a JSON array of strings
           MISSING_STACKS_JSON=$(printf '%s\n' "${missing_stacks[@]}" | jq -R -s -c 'split("\n")[:-1]')
-          echo "MISSING_STACKS_JSON=$MISSING_STACKS_JSON"
 
           # Output the missing stacks to GitHub output
           echo "Exporting missing stacks $MISSING_STACKS_JSON"
