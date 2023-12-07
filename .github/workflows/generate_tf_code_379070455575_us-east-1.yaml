@@ -375,7 +375,7 @@ jobs:
 
   delete_tf_code_stacks:
     needs: [compile_stacks, generate_tf_code_stacks]
-    if: needs.compile_stacks.outputs.missing_stacks != '[]'
+    if: needs.compile_stacks.outputs.missing_stacks != '[""]'
     name: Deleting ${{ matrix.stack }}
     runs-on: ubuntu-latest
     strategy:
