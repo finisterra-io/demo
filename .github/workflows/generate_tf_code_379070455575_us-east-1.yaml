@@ -128,6 +128,7 @@ jobs:
           fi
 
           for DIR in $FOLDERS; do
+              git checkout ${{ github.base_ref }}
               FOLDER_NAME=$(basename "$DIR")
 
               if [[ "$FOLDER_NAME" != "${AWS_MODULE}" ]]; then
