@@ -209,6 +209,7 @@ jobs:
 
   compile_stacks:
     name: Get Stacks
+
     runs-on: ubuntu-latest
     needs: [generate_tf_code]
     if: always()
